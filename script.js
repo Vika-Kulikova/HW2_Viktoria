@@ -1,54 +1,60 @@
-// (function () {
-
-function chackString(str) {
+(function () {
     let elements = [];
+    let string = prompt('Enter your string:', '');
 
-    for (let i = 0; i < str.length; i++) {
-        const strElement = str[i];
-        if (strElement == "(" || strElement == "{" || strElement == "[" || strElement == "\"" || strElement == "`") {
-            elements.push(strElement);
-        } else if (strElement == ")") {
-            if (elements.pop() != "(") {
-                return false;
-            }
-        } else if (strElement == "}") {
-            if (elements.pop() != "{") {
-                return false;
-            }
-        } else if (strElement == "]") {
-            if (elements.pop() != "[") {
-                return false;
-            }
-        } else if (strElement == "'") {
-            if (elements.length && elements.indexOf("'") == elements.length -1) {
-                elements.pop();
-            } else {
-                elements.push("'")
+    function chackString(str) {
+        for (let i = 0; i < str.length; i++) {
+            const strElement = str[i];
+            if (strElement == "(" || strElement == "{" || strElement == "[") {
+                elements.push(strElement);
+            } else if (strElement == ")") {
+                if (elements.pop() != "(") {
+                    return false;
+                }
+            } else if (strElement == "}") {
+                if (elements.pop() != "{") {
+                    return false;
+                }
+            } else if (strElement == "]") {
+                if (elements.pop() != "[") {
+                    return false;
+                }
+            } else if (strElement == "'") {
+                if (elements.length && elements.indexOf("'") == elements.length - 1) {
+                    elements.pop();
+                } else {
+                    elements.push("'")
+                }
+            } else if (strElement == "\"") {
+                if (elements.length && elements.indexOf("\"") == elements.length - 1) {
+                    elements.pop();
+                } else {
+                    elements.push("\"")
+                }
+            } else if (strElement == "`") {
+                if (elements.length && elements.indexOf("`") == elements.length - 1) {
+                    elements.pop();
+                } else {
+                    elements.push("`")
+                }
             }
         }
+        return !elements.length;
     }
-    // } else if (str[i] == "\"" || str[i] == "'" || str[i] == "`") {
-    //     quotes.push(str[i]);
-    // }
-    // else if (str[i] == "\"" || str[i] == "'" || str[i] == "`") {
-    //     quotes.push(str[i]);
-    // }
 
+    function massege(str, array) {
+        if (str) {
+            console.log('Your string is valid');
+        } else {
+            console.log('Your string is invalid. You missed: ' + array[0]);
+        }
+    }
 
-    alert(elements);
-    // alert(quotes);
-    return !elements.length;
+    let result = chackString(string);
+    massege(result, elements);
 
-    // for (let i = 0; i < str.length; i++) {
-    //
-    // }
-    // alert(quotes);
-    // return !quotes.length;
-}
+}());
 
-// let str = chackString("''['({'})]''");
-    let str = chackString("jhgkjgh'hbjhkgkgjkkgj'gvjh()'j'hj{''}hjh");
-console.log(str);
 
 
 
